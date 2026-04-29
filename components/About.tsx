@@ -1,9 +1,24 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <section id="about">
       <div className="section-wrap">
         <h2 className="section-title">Who I Am</h2>
         <div className="about-grid">
+          <div className="about-image-side">
+            <div className="about-img-frame">
+              <Image 
+                src="/profile.jpg" 
+                alt="Tasin" 
+                width={250} 
+                height={250} 
+                className="about-img"
+              />
+              <div className="about-img-decor"></div>
+            </div>
+          </div>
+          
           <div className="about-text">
             <p>
               My journey into the world of code started with a simple curiosity about how the internet works. 

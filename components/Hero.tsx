@@ -62,21 +62,29 @@ export default function Hero() {
           animate="visible"
         >
           <div className="hero-content">
-            <motion.h1 className="hero-name" variants={itemVariants}>
+            <motion.h1 
+              className="hero-name" 
+              variants={itemVariants}
+              style={{ fontSize: 'clamp(48px, 8vw, 90px)', fontWeight: 900, letterSpacing: '-4px', lineHeight: 0.9, marginBottom: '24px' }}
+            >
               I&apos;m <span className="grad">Tasin</span>
             </motion.h1>
 
-            <motion.div className="hero-tag" variants={itemVariants} style={{ marginBottom: '24px', display: 'flex', gap: '8px' }}>
-              <span>I am a</span>
-              <div style={{ position: 'relative', height: '24px', overflow: 'hidden' }}>
+            <motion.div 
+              className="hero-tag" 
+              variants={itemVariants} 
+              style={{ marginBottom: '32px', display: 'flex', gap: '12px', fontSize: '18px', letterSpacing: '-0.5px' }}
+            >
+              <span style={{ opacity: 0.6 }}>I am a</span>
+              <div style={{ position: 'relative', height: '28px', overflow: 'hidden' }}>
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={roleIndex}
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ display: 'block', color: 'var(--orange)', fontWeight: 700 }}
+                    transition={{ duration: 0.4, ease: "circOut" }}
+                    style={{ display: 'block', color: 'var(--orange)', fontWeight: 800 }}
                   >
                     {roles[roleIndex]}
                   </motion.span>
@@ -140,10 +148,10 @@ export default function Hero() {
             <div className="hero-image-container" ref={imageRef}>
               <div className="image-border-animate"></div>
               <Image 
-                src="/profile.jpg" 
+                src="/tasin.jpg" 
                 alt="Tasin - Full Stack Developer" 
                 width={450} 
-                height={550} 
+                height={450} 
                 className="hero-image"
                 priority
               />
