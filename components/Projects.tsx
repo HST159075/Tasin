@@ -13,7 +13,7 @@ const projectsData = [
     image: "/bidbd.jpg",
     tags: ["Next.js", "Tailwind CSS", "PostgreSQL", "Real-time", "SSLCommerz", "bKash"],
     live: "https://bid-press.vercel.app",
-    github: "#", // Add your github link here
+    github: "https://github.com/HST159075/L-BIDPRES",
     stats: [
       { num: "2,400+", label: "Live Auctions" },
       { num: "18,000+", label: "Active Bidders" },
@@ -29,7 +29,7 @@ const projectsData = [
     image: "/cinerate.jpg",
     tags: ["Next.js", "Tailwind CSS", "TMDB API", "Subscription Plans", "Watchlist"],
     live: "https://tube-client.vercel.app",
-    github: "#",
+    github: "https://github.com/HST159075?tab=repositories",
     stats: [
       { num: "Top Rated", label: "Movies & Series" },
       { num: "৳299/mo", label: "Premium Plan" },
@@ -53,6 +53,38 @@ const projectsData = [
     ],
     challenges: "Designing a categorization system that is both medically accurate and user-friendly for non-expert customers was difficult. I consulted pharmaceutical guidelines for the structure.",
     future: "Integration with a digital prescription scanning feature using OCR technology for automated orders."
+  },
+  {
+    id: 4,
+    title: "Red Rose — Cosmetic Shop",
+    desc: "A premium e-commerce platform for cosmetics and skincare. Features a curated collection, secure cart functionality, cash on delivery (COD) support, and user authentication for a seamless shopping experience.",
+    image: "/redrose.jpg",
+    tags: ["Next.js", "Tailwind CSS", "E-commerce", "Authentication", "Responsive"],
+    live: "https://red-rose-seven.vercel.app",
+    github: "https://github.com/HST159075/C-Red-rose",
+    stats: [
+      { num: "Premium", label: "Cosmetics" },
+      { num: "COD", label: "Available" },
+      { num: "Fast", label: "Delivery" }
+    ],
+    challenges: "Implementing a seamless cart and checkout flow with user authentication while ensuring a premium UI/UX design matching the brand's aesthetic.",
+    future: "Integrating an AI-powered product recommendation system based on user skin type and preferences."
+  },
+  {
+    id: 5,
+    title: "Rawasi Gahlot — Premium Tailoring",
+    desc: "A luxury tailoring platform for bespoke ladies' wear in Muscat, Oman. Features a multilingual interface, service gallery, and direct WhatsApp integration for seamless order placement and consultations.",
+    image: "/rawasi.jpg",
+    tags: ["HTML5", "CSS3", "JavaScript", "Multilingual", "Responsive"],
+    live: "https://hst159075.github.io/Rawasi-tailor/",
+    github: "#",
+    stats: [
+      { num: "Luxury", label: "Abayas" },
+      { num: "Muscat", label: "Oman" },
+      { num: "Direct", label: "WhatsApp" }
+    ],
+    challenges: "Designing a multilingual UI (English & Arabic) that maintains aesthetic consistency and provides a premium user experience across all devices.",
+    future: "Implementing an online fitting system where users can upload measurements and preview fabric combinations in 3D."
   }
 ];
 
@@ -73,7 +105,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative">
+    <section id="projects" className="relative pb-32">
       <div className="section-wrap px-4 md:px-10">
         <motion.div
           className="mb-12 md:mb-24 lg:mb-32 relative"
@@ -94,79 +126,77 @@ export default function Projects() {
         {/* Consistent Spacer - Responsive */}
         <div className="h-6 md:h-12 lg:h-[60px] w-full" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <AnimatePresence mode="wait">
-            {currentProjects.map((project, idx) => (
-              <motion.div
-                key={project.id}
-                className="project-card-new glass group cursor-pointer hover:-translate-y-2 transition-all duration-500"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ delay: idx * 0.1 }}
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="relative overflow-hidden rounded-[24px] aspect-[4/3] border border-white/5 shadow-2xl">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={600}
-                    height={450}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                    <div className="flex gap-2 mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                      {project.tags.slice(0, 2).map(tag => (
-                        <span key={tag} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-orange-500/20 text-orange-400 border border-orange-500/20 rounded-lg backdrop-blur-xl">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="text-3xl font-bold text-white mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                      {project.title.split('—')[0]}
-                    </h3>
-                    <div className="text-xs text-orange-500 font-black flex items-center gap-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150 uppercase tracking-widest">
-                      Explore Case Study <ExternalLink size={14} className="animate-pulse" />
+        <div className="flex flex-col gap-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <AnimatePresence>
+              {currentProjects.map((project, idx) => (
+                <motion.div
+                  key={project.id}
+                  className="project-card-new glass group cursor-pointer hover:-translate-y-2 transition-all duration-500 relative z-40 pointer-events-auto"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ delay: idx * 0.1 }}
+                  onClick={() => setSelectedProject(project)}
+                >
+                  <div className="relative overflow-hidden rounded-[24px] aspect-[4/3] border border-white/5 shadow-2xl">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={600}
+                      height={450}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+                      <div className="flex gap-2 mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                        {project.tags.slice(0, 2).map(tag => (
+                          <span key={tag} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-orange-500/20 text-orange-400 border border-orange-500/20 rounded-lg backdrop-blur-xl">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="text-3xl font-bold text-white mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                        {project.title.split('—')[0]}
+                      </h3>
+                      <div className="text-xs text-orange-500 font-black flex items-center gap-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150 uppercase tracking-widest">
+                        Explore Case Study <ExternalLink size={14} className="animate-pulse" />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="p-6 flex justify-between items-center group-hover:bg-white/5 transition-colors rounded-b-3xl">
-                  <div>
-                    <div className="text-lg font-bold text-white/90 group-hover:text-orange-500 transition-colors uppercase tracking-widest">{project.title.split('—')[0]}</div>
-                    <div className="text-[10px] text-muted font-medium mt-1">Platform Architecture & Design</div>
+                  <div className="p-6 flex justify-between items-center group-hover:bg-white/5 transition-colors rounded-b-3xl">
+                    <div>
+                      <div className="text-lg font-bold text-white/90 group-hover:text-orange-500 transition-colors uppercase tracking-widest">{project.title.split('—')[0]}</div>
+                      <div className="text-[10px] text-muted font-medium mt-1">Platform Architecture & Design</div>
+                    </div>
+                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[360deg]">
+                      <ExternalLink size={18} />
+                    </div>
                   </div>
-                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[360deg]">
-                    <ExternalLink size={18} />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Pagination UI */}
+          {totalPages > 1 && (
+            <div className="mt-20 flex justify-center items-center gap-4 py-10">
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => paginate(i + 1)}
+                  className={`w-12 h-12 rounded-full border transition-all duration-300 flex items-center justify-center font-bold text-sm relative z-50 cursor-pointer pointer-events-auto ${
+                    currentPage === i + 1 
+                    ? 'bg-orange-500 border-orange-500 text-white shadow-[0_0_20px_rgba(255,106,0,0.4)]' 
+                    : 'bg-white/5 border-white/10 text-muted hover:border-white/30 hover:bg-white/10'
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-
-        {/* Pagination UI */}
-        {totalPages > 1 && (
-          <motion.div 
-            className="mt-16 flex justify-center items-center gap-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-          >
-            {[...Array(totalPages)].map((_, i) => (
-              <button
-                key={i}
-                onClick={() => paginate(i + 1)}
-                className={`w-12 h-12 rounded-full border transition-all duration-300 flex items-center justify-center font-bold text-sm ${
-                  currentPage === i + 1 
-                  ? 'bg-orange-500 border-orange-500 text-white shadow-[0_0_20px_rgba(255,106,0,0.4)]' 
-                  : 'bg-white/5 border-white/10 text-muted hover:border-white/30'
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </motion.div>
-        )}
       </div>
 
       {/* Project Detail Modal */}

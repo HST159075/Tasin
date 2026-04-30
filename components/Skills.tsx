@@ -43,8 +43,8 @@ const itemVariants: Variants = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden">
-      <div className="section-wrap relative z-10 px-4 md:px-10">
+    <section id="skills" className="relative overflow-hidden max-w-[1400px] mx-auto">
+      <div className="section-wrap relative z-10 px-4 md:px-16 lg:px-20">
         <motion.div 
           className="mb-12 md:mb-24 lg:mb-32 relative"
           initial={{ opacity: 0, y: 20 }}
@@ -67,13 +67,13 @@ export default function Skills() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 lg:gap-24">
           {/* Frontend Card */}
           <motion.div 
-            className="skill-card-designer glass p-12 md:p-20 rounded-[60px] border border-white/5 relative group"
+            className="skill-card-designer glass p-10 md:p-14 lg:p-16 rounded-[40px] md:rounded-[60px] border border-white/5 relative group w-full min-h-[400px] flex flex-col justify-center"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[60px]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[100px]" />
             <h3 className="text-4xl font-bold mb-16 flex items-center gap-6">
               <span className="w-16 h-16 flex items-center justify-center bg-orange-500/20 text-orange-500 rounded-3xl">01</span>
               Frontend
@@ -93,7 +93,7 @@ export default function Skills() {
                 >
                   <div className="w-3 h-3 rounded-full bg-orange-500 shadow-[0_0_15px_rgba(255,106,0,0.7)]" />
                   <div>
-                    <div className="text-xl font-bold text-white/90">{skill.name}</div>
+                    <div className="text-2xl font-bold text-white/90">{skill.name}</div>
                     <div className="text-[12px] text-muted uppercase tracking-widest mt-1">{skill.level}</div>
                   </div>
                 </motion.div>
@@ -103,13 +103,13 @@ export default function Skills() {
 
           {/* Backend Card */}
           <motion.div 
-            className="skill-card-designer glass p-12 md:p-20 rounded-[60px] border border-white/5 relative group"
+            className="skill-card-designer glass p-10 md:p-14 lg:p-16 rounded-[40px] md:rounded-[60px] border border-white/5 relative group w-full min-h-[400px] flex flex-col justify-center"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[60px]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[100px]" />
             <h3 className="text-4xl font-bold mb-16 flex items-center gap-6">
               <span className="w-16 h-16 flex items-center justify-center bg-purple-500/20 text-purple-500 rounded-3xl">02</span>
               Backend
@@ -129,7 +129,7 @@ export default function Skills() {
                 >
                   <div className="w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_15px_rgba(139,92,246,0.7)]" />
                   <div>
-                    <div className="text-xl font-bold text-white/90">{skill.name}</div>
+                    <div className="text-2xl font-bold text-white/90">{skill.name}</div>
                     <div className="text-[12px] text-muted uppercase tracking-widest mt-1">{skill.level}</div>
                   </div>
                 </motion.div>
