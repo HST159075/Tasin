@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle, Zap } from "lucide-react";
 
 export default function Hero() {
   const imageRef = useRef<HTMLDivElement>(null);
@@ -65,17 +65,23 @@ export default function Hero() {
             <motion.h1 
               className="hero-name" 
               variants={itemVariants}
-              style={{ fontSize: 'clamp(48px, 8vw, 90px)', fontWeight: 900, letterSpacing: '-4px', lineHeight: 0.9, marginBottom: '24px' }}
+              style={{ fontSize: 'clamp(48px, 8vw, 92px)', fontWeight: 900, letterSpacing: '-5px', lineHeight: 0.85, marginBottom: '28px' }}
             >
-              I&apos;m <span className="grad">Tasin</span>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                I&apos;m <span className="grad">Tasin</span>
+              </motion.span>
             </motion.h1>
 
             <motion.div 
               className="hero-tag" 
               variants={itemVariants} 
-              style={{ marginBottom: '32px', display: 'flex', gap: '12px', fontSize: '18px', letterSpacing: '-0.5px' }}
+              style={{ marginBottom: '32px', display: 'flex', gap: '12px', fontSize: '19px', letterSpacing: '-0.5px', fontWeight: 500 }}
             >
-              <span style={{ opacity: 0.6 }}>I am a</span>
+              <span style={{ opacity: 0.7 }}>A creative</span>
               <div style={{ position: 'relative', height: '28px', overflow: 'hidden' }}>
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -92,9 +98,14 @@ export default function Hero() {
               </div>
             </motion.div>
             
-            <motion.p className="hero-role" variants={itemVariants}>
-              Based in <strong>Bangladesh</strong>. I build fast, scalable, <br />
-              real-time web applications that solve real problems.
+            <motion.p 
+              className="hero-role" 
+              variants={itemVariants}
+              style={{ fontFamily: '"Times New Roman", Times, serif', fontStyle: 'italic' }}
+            >
+              Based in <strong>Bangladesh</strong>. I architect fast, scalable, <br />
+              real-time web applications that solve <strong>actual problems</strong>—from <br />
+              robust <strong>database architecture</strong> to <strong>pixel-perfect</strong> interfaces.
             </motion.p>
             
             <motion.div className="hero-btns" variants={itemVariants}>
@@ -117,7 +128,7 @@ export default function Hero() {
                 <a href="#contact" className="social-icon-btn" aria-label="Email">
                   <Mail size={20} />
                 </a>
-                <a href="#contact" className="social-icon-btn" aria-label="WhatsApp">
+                <a href="https://wa.me/8801887238025" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="WhatsApp">
                   <MessageCircle size={20} />
                 </a>
               </div>
@@ -145,15 +156,35 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
-            <div className="hero-image-container" ref={imageRef}>
-              <div className="image-border-animate"></div>
+            <div className="hero-image-container" ref={imageRef} style={{ background: 'transparent', border: 'none', boxShadow: 'none', position: 'relative' }}>
+              
+              {/* Floating Designer Badges */}
+              <motion.div 
+                className="absolute -top-10 -right-10 glass px-4 py-2 rounded-2xl flex items-center gap-2 border border-white/10 z-10"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-xs font-bold whitespace-nowrap">Available for Hire</span>
+              </motion.div>
+
+              <motion.div 
+                className="absolute bottom-10 -left-10 glass px-4 py-2 rounded-2xl flex items-center gap-2 border border-white/10 z-10"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <Zap size={14} className="text-orange-500" />
+                <span className="text-xs font-bold whitespace-nowrap">Full Stack Mastery</span>
+              </motion.div>
+
               <Image 
-                src="/tasin.jpg" 
+                src="/tasin_nobg.png" 
                 alt="Tasin - Full Stack Developer" 
-                width={450} 
-                height={450} 
+                width={500} 
+                height={500} 
                 className="hero-image"
                 priority
+                style={{ objectFit: 'contain', position: 'relative', zIndex: 5 }}
               />
               <div className="hero-image-glow"></div>
             </div>
