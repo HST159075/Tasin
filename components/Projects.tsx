@@ -85,7 +85,7 @@ export default function Projects() {
             <span className="h-[1px] w-8 md:w-12 bg-orange-500" />
             <span className="text-orange-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em]">Creative Portfolio</span>
           </div>
-          <h2 className="text-4xl md:text-7xl lg:text-9xl font-black tracking-tightest mb-6 md:mb-10 leading-none">Projects</h2>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tightest mb-6 md:mb-10 leading-none">Projects</h2>
           <p className="text-muted text-lg md:text-xl lg:text-3xl max-w-3xl leading-relaxed italic font-serif opacity-80">
             A curated selection of digital experiences where <span className="text-white not-italic font-sans font-bold">complex logic</span> meets <span className="text-white not-italic font-sans font-bold">intuitive design</span>.
           </p>

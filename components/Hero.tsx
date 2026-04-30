@@ -177,16 +177,27 @@ export default function Hero() {
                 <span className="text-xs font-bold whitespace-nowrap">Full Stack Mastery</span>
               </motion.div>
 
-              <Image 
-                src="/tasin_nobg.png" 
-                alt="Tasin - Full Stack Developer" 
-                width={500} 
-                height={500} 
-                className="hero-image"
-                priority
-                style={{ objectFit: 'contain', position: 'relative', zIndex: 5 }}
-              />
-              <div className="hero-image-glow"></div>
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.03, 1],
+                  filter: ['drop-shadow(0px 0px 0px rgba(255,106,0,0))', 'drop-shadow(0px 10px 25px rgba(255,106,0,0.3))', 'drop-shadow(0px 0px 0px rgba(255,106,0,0))']
+                }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ 
+                  scale: 1.08, 
+                  filter: 'drop-shadow(0px 15px 35px rgba(255,106,0,0.6))' 
+                }}
+                className="relative z-10 w-full h-full flex items-center justify-center cursor-pointer"
+              >
+                <Image 
+                  src="/tasin_nobg.png" 
+                  alt="Tasin - Full Stack Developer" 
+                  width={500} 
+                  height={500} 
+                  className="hero-image object-contain"
+                  priority
+                />
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>

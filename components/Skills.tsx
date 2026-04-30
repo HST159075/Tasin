@@ -55,7 +55,7 @@ export default function Skills() {
             <span className="h-[1px] w-8 md:w-12 bg-purple-500" />
             <span className="text-purple-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em]">Technical Mastery</span>
           </div>
-          <h2 className="text-4xl md:text-7xl lg:text-9xl font-black tracking-tightest mb-6 md:mb-10 leading-none">Skills</h2>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tightest mb-6 md:mb-10 leading-none">Skills</h2>
           <p className="text-muted text-lg md:text-xl lg:text-3xl max-w-3xl leading-relaxed italic font-serif opacity-80">
             Mastering the modern web with a focus on <span className="text-white not-italic font-sans font-bold">real-time performance</span> and <span className="text-white not-italic font-sans font-bold">scalable architecture</span>.
           </p>
