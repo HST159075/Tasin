@@ -35,7 +35,7 @@ export default function Footer() {
             <div className="footer-column">
               <h4>Socials</h4>
               <a href="https://github.com/HST159075" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a href="https://linkedin.com/in/tasin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/md-tasinul-alam/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a href="https://twitter.com/tasin" target="_blank" rel="noopener noreferrer">Twitter</a>
               <a href="https://instagram.com/tasin" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
