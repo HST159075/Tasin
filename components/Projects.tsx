@@ -29,7 +29,7 @@ const projectsData = [
     image: "/cinerate.jpg",
     tags: ["Next.js", "Tailwind CSS", "TMDB API", "Subscription Plans", "Watchlist"],
     live: "https://tube-client.vercel.app",
-    github: "https://github.com/HST159075?tab=repositories",
+    github: "https://github.com/HST159075/Tube-client",
     stats: [
       { num: "Top Rated", label: "Movies & Series" },
       { num: "৳299/mo", label: "Premium Plan" },
@@ -45,7 +45,7 @@ const projectsData = [
     image: "/medistore.jpg",
     tags: ["Next.js", "Tailwind CSS", "E-commerce", "Healthcare", "Responsive"],
     live: "https://medistore-dusky.vercel.app",
-    github: "#",
+    github: "https://github.com/HST159075/medistore-cliant",
     stats: [
       { num: "Secure", label: "Checkout" },
       { num: "Fast", label: "Delivery" },
@@ -76,7 +76,7 @@ const projectsData = [
     desc: "A luxury tailoring platform for bespoke ladies' wear in Muscat, Oman. Features a multilingual interface, service gallery, and direct WhatsApp integration for seamless order placement and consultations.",
     image: "/rawasi.jpg",
     tags: ["HTML5", "CSS3", "JavaScript", "Multilingual", "Responsive"],
-    live: "https://hst159075.github.io/Rawasi-tailor/",
+    live: "https://hst159075.github.io/Rawasi-tailor",
     github: "#",
     stats: [
       { num: "Luxury", label: "Abayas" },
@@ -105,72 +105,87 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative pb-32">
-      <div className="section-wrap px-4 md:px-10">
-        <motion.div
-          className="mb-12 md:mb-24 lg:mb-32 relative"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <span className="h-[1px] w-8 md:w-12 bg-orange-500" />
-            <span className="text-orange-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em]">Creative Portfolio</span>
-          </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tightest mb-6 md:mb-10 leading-none">Projects</h2>
-          <p className="text-muted text-lg md:text-xl lg:text-3xl max-w-3xl leading-relaxed italic font-serif opacity-80">
-            A curated selection of digital experiences where <span className="text-white not-italic font-sans font-bold">complex logic</span> meets <span className="text-white not-italic font-sans font-bold">intuitive design</span>.
-          </p>
-        </motion.div>
+    <section id="projects" className="relative py-24 bg-transparent overflow-hidden">
+      <div className="max-w-[1100px] mx-auto px-4 relative z-10">
+        
+        {/* Header */}
+        <div className="skills-header mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
+          >
+            <Code2 className="w-4 h-4 text-orange-500" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">Creative Portfolio</span>
+          </motion.div>
+          <motion.h2 
+            className="text-4xl md:text-5xl font-extrabold text-white mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            Featured <span className="text-orange-500">Projects</span>
+          </motion.h2>
+          <motion.p 
+            className="text-muted text-lg max-w-2xl mx-auto opacity-80"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            A curated selection of digital experiences where complex logic meets intuitive design.
+          </motion.p>
+        </div>
 
-        {/* Consistent Spacer - Responsive */}
-        <div className="h-6 md:h-12 lg:h-[60px] w-full" />
-
-        <div className="flex flex-col gap-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="flex flex-col gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence>
               {currentProjects.map((project, idx) => (
                 <motion.div
                   key={project.id}
-                  className="project-card-new glass group cursor-pointer hover:-translate-y-2 transition-all duration-500 relative z-40 pointer-events-auto"
+                  className="bg-[#0e0e12] border border-white/5 rounded-[32px] p-5 group cursor-pointer hover:-translate-y-2 hover:border-orange-500/30 hover:shadow-[0_10px_40px_rgba(255,106,0,0.1)] transition-all duration-500 flex flex-col"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ delay: idx * 0.1 }}
                   onClick={() => setSelectedProject(project)}
                 >
-                  <div className="relative overflow-hidden rounded-[24px] aspect-[4/3] border border-white/5 shadow-2xl">
+                  <div className="relative overflow-hidden rounded-[24px] aspect-[4/3] mb-6 border border-white/5">
                     <Image
                       src={project.image}
                       alt={project.title}
-                      width={600}
-                      height={450}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                      <div className="flex gap-2 mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                        {project.tags.slice(0, 2).map(tag => (
-                          <span key={tag} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-orange-500/20 text-orange-400 border border-orange-500/20 rounded-lg backdrop-blur-xl">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <h3 className="text-3xl font-bold text-white mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                        {project.title.split('—')[0]}
-                      </h3>
-                      <div className="text-xs text-orange-500 font-black flex items-center gap-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150 uppercase tracking-widest">
-                        Explore Case Study <ExternalLink size={14} className="animate-pulse" />
-                      </div>
-                    </div>
+                    {/* Dark overlay that fades on hover */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
 
-                  <div className="p-6 flex justify-between items-center group-hover:bg-white/5 transition-colors rounded-b-3xl">
-                    <div>
-                      <div className="text-lg font-bold text-white/90 group-hover:text-orange-500 transition-colors uppercase tracking-widest">{project.title.split('—')[0]}</div>
-                      <div className="text-[10px] text-muted font-medium mt-1">Platform Architecture & Design</div>
+                  <div className="px-2 flex flex-col flex-grow gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.slice(0, 3).map(tag => (
+                        <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/5 text-white/70 border border-white/10 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[360deg]">
-                      <ExternalLink size={18} />
+                    
+                    <div>
+                      <h3 className="text-2xl font-bold text-white group-hover:text-orange-500 transition-colors mb-2">
+                        {project.title.split('—')[0].trim()}
+                      </h3>
+                      <p className="text-sm text-muted line-clamp-2 leading-relaxed">
+                        {project.desc}
+                      </p>
+                    </div>
+
+                    {/* Bottom row: Explore link */}
+                    <div className="mt-auto pt-4 flex justify-between items-center border-t border-white/5">
+                      <span className="text-xs font-bold text-orange-500 uppercase tracking-widest flex items-center gap-2">
+                        Explore <ExternalLink size={14} className="group-hover:animate-pulse" />
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -180,14 +195,14 @@ export default function Projects() {
 
           {/* Pagination UI */}
           {totalPages > 1 && (
-            <div className="mt-20 flex justify-center items-center gap-4 py-10">
+            <div className="flex justify-center items-center gap-4">
               {[...Array(totalPages)].map((_, i) => (
                 <button
                   key={i}
                   onClick={() => paginate(i + 1)}
-                  className={`w-12 h-12 rounded-full border transition-all duration-300 flex items-center justify-center font-bold text-sm relative z-50 cursor-pointer pointer-events-auto ${
+                  className={`w-10 h-10 rounded-full border transition-all duration-300 flex items-center justify-center font-bold text-sm ${
                     currentPage === i + 1 
-                    ? 'bg-orange-500 border-orange-500 text-white shadow-[0_0_20px_rgba(255,106,0,0.4)]' 
+                    ? 'bg-orange-500 border-orange-500 text-white shadow-[0_0_15px_rgba(255,106,0,0.3)]' 
                     : 'bg-white/5 border-white/10 text-muted hover:border-white/30 hover:bg-white/10'
                   }`}
                 >
@@ -202,51 +217,74 @@ export default function Projects() {
       {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="modal-overlay">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
             <motion.div
-              className="modal-content"
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-[#0e0e12] border border-white/10 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[32px] relative flex flex-col lg:flex-row shadow-2xl"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <button className="modal-close" onClick={() => setSelectedProject(null)}>
-                <X size={24} />
+              <button 
+                className="absolute top-4 right-4 z-50 w-10 h-10 bg-black/50 hover:bg-orange-500 rounded-full flex items-center justify-center text-white backdrop-blur-md border border-white/10 transition-all"
+                onClick={() => setSelectedProject(null)}
+              >
+                <X size={20} />
               </button>
 
-              <div className="modal-grid">
-                <div className="modal-image-side">
-                  <Image src={selectedProject.image} alt={selectedProject.title} width={800} height={450} className="modal-main-img" />
-                  <div className="modal-tags">
-                    {selectedProject.tags.map(tag => <span key={tag} className="proj-tag">{tag}</span>)}
+              {/* Image Side */}
+              <div className="w-full lg:w-1/2 relative h-[300px] lg:h-auto border-r border-white/5 bg-[#050508] p-6 lg:p-8 flex flex-col justify-center">
+                <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden border border-white/5 shadow-xl">
+                  <Image src={selectedProject.image} alt={selectedProject.title} fill className="object-cover" />
+                </div>
+                <div className="mt-8 flex flex-wrap gap-2 justify-center">
+                  {selectedProject.tags.map(tag => (
+                    <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Info Side */}
+              <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col gap-8">
+                <div>
+                  <h3 className="text-3xl font-extrabold text-white mb-4 leading-tight">{selectedProject.title}</h3>
+                  <p className="text-[15px] text-muted leading-relaxed">{selectedProject.desc}</p>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 border-y border-white/5 py-6">
+                  {selectedProject.stats.map((stat, i) => (
+                    <div key={i} className="flex flex-col gap-1 text-center">
+                      <span className="text-lg font-bold text-white">{stat.num}</span>
+                      <span className="text-[10px] text-muted uppercase tracking-widest">{stat.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <h4 className="text-sm font-bold text-white flex items-center gap-2 mb-3 uppercase tracking-widest">
+                      <Trophy size={16} className="text-orange-500" /> Key Challenge
+                    </h4>
+                    <p className="text-sm text-muted leading-relaxed">{selectedProject.challenges}</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-bold text-white flex items-center gap-2 mb-3 uppercase tracking-widest">
+                      <Lightbulb size={16} className="text-orange-500" /> Future Scope
+                    </h4>
+                    <p className="text-sm text-muted leading-relaxed">{selectedProject.future}</p>
                   </div>
                 </div>
 
-                <div className="modal-info-side">
-                  <h3 className="modal-title">{selectedProject.title}</h3>
-
-                  <div className="modal-section">
-                    <h4><Code2 size={18} className="modal-icon" /> Tech Stack</h4>
-                    <p>{selectedProject.tags.join(", ")}</p>
-                  </div>
-
-                  <div className="modal-section">
-                    <h4><Trophy size={18} className="modal-icon" /> Challenges Faced</h4>
-                    <p>{selectedProject.challenges}</p>
-                  </div>
-
-                  <div className="modal-section">
-                    <h4><Lightbulb size={18} className="modal-icon" /> Future Plans</h4>
-                    <p>{selectedProject.future}</p>
-                  </div>
-
-                  <div className="modal-actions">
-                    <a href={selectedProject.live} target="_blank" rel="noopener noreferrer" className="modal-btn primary">
-                      <ExternalLink size={18} /> Live Project
-                    </a>
-                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="modal-btn github">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg> Source Code
-                    </a>
-                  </div>
+                <div className="mt-auto pt-6 flex flex-wrap gap-4">
+                  <a href={selectedProject.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+                    <ExternalLink size={18} /> Live Demo
+                  </a>
+                  <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold py-3 px-6 rounded-xl transition-colors">
+                    <Code2 size={18} /> Source Code
+                  </a>
                 </div>
               </div>
             </motion.div>

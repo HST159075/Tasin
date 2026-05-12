@@ -1,142 +1,108 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { CheckCircle2, Zap } from "lucide-react";
 
-const frontendSkills = [
-  { name: "HTML5", level: "Expert" },
-  { name: "Next.JS", level: "Expert" },
-  { name: "TypeScript", level: "Expert" },
-  { name: "Tailwind Css", level: "Intermediate" },
-  { name: "JavaScript", level: "Expert" },
-  { name: "React.JS", level: "Expert" },
-];
-
-const backendSkills = [
-  { name: "Node.JS", level: "Expert" },
-  { name: "SQL", level: "Intermediate" },
-  { name: "ExpressJS", level: "Expert" },
-  { name: "Docker", level: "Intermediate" },
-  { name: "MongoDB", level: "Expert" },
-  { name: "Prisma", level: "Intermediate" },
-];
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+const skillCategories = [
+  {
+    title: "Frontend Development",
+    skills: [
+      { name: "Next.JS / React", level: "Expert" },
+      { name: "TypeScript", level: "Advanced" },
+      { name: "Tailwind CSS", level: "Expert" },
+      { name: "Framer Motion", level: "Advanced" },
+      { name: "Redux / Context", level: "Advanced" },
+      { name: "HTML5 / CSS3", level: "Expert" },
+    ],
   },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+  {
+    title: "Backend Development",
+    skills: [
+      { name: "Node.JS / Express", level: "Advanced" },
+      { name: "MongoDB", level: "Expert" },
+      { name: "PostgreSQL", level: "Intermediate" },
+      { name: "Prisma / Mongoose", level: "Advanced" },
+      { name: "REST / GraphQL", level: "Advanced" },
+      { name: "Socket.io", level: "Intermediate" },
+    ],
   },
-};
+  {
+    title: "Tools & DevOps",
+    skills: [
+      { name: "Git / GitHub", level: "Expert" },
+      { name: "Docker", level: "Intermediate" },
+      { name: "Vercel / Netlify", level: "Advanced" },
+      { name: "Postman", level: "Expert" },
+      { name: "Figma UI/UX", level: "Intermediate" },
+      { name: "Firebase / Supabase", level: "Advanced" },
+    ],
+  },
+];
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden max-w-[1400px] mx-auto">
-      <div className="section-wrap relative z-10 px-4 md:px-16 lg:px-20">
-        <motion.div 
-          className="mb-12 md:mb-24 lg:mb-32 relative"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <span className="h-[1px] w-8 md:w-12 bg-purple-500" />
-            <span className="text-purple-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em]">Technical Mastery</span>
-          </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tightest mb-6 md:mb-10 leading-none">Skills</h2>
-          <p className="text-muted text-lg md:text-xl lg:text-3xl max-w-3xl leading-relaxed italic font-serif opacity-80">
-            Mastering the modern web with a focus on <span className="text-white not-italic font-sans font-bold">real-time performance</span> and <span className="text-white not-italic font-sans font-bold">scalable architecture</span>.
-          </p>
-        </motion.div>
+    <section id="skills" className="relative py-24 bg-transparent overflow-hidden">
+      <div className="max-w-[1100px] mx-auto px-4 relative z-10">
         
-        {/* Refined Spacer - Responsive */}
-        <div className="h-6 md:h-12 lg:h-[60px] w-full" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 lg:gap-24">
-          {/* Frontend Card */}
-          <motion.div 
-            className="skill-card-designer glass p-10 md:p-14 lg:p-16 rounded-[40px] md:rounded-[60px] border border-white/5 relative group w-full min-h-[400px] flex flex-col justify-center"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+        {/* Header */}
+        <div className="skills-header">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[100px]" />
-            <h3 className="text-4xl font-bold mb-16 flex items-center gap-6">
-              <span className="w-16 h-16 flex items-center justify-center bg-orange-500/20 text-orange-500 rounded-3xl">01</span>
-              Frontend
-            </h3>
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {frontendSkills.map((skill, index) => (
-                <motion.div 
-                  key={index}
-                  variants={itemVariants}
-                  className="flex items-center gap-5 p-6 bg-white/5 rounded-3xl border border-white/5 group-hover:border-orange-500/20 transition-all hover:bg-white/10"
-                >
-                  <div className="w-3 h-3 rounded-full bg-orange-500 shadow-[0_0_15px_rgba(255,106,0,0.7)]" />
-                  <div>
-                    <div className="text-2xl font-bold text-white/90">{skill.name}</div>
-                    <div className="text-[12px] text-muted uppercase tracking-widest mt-1">{skill.level}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+            <Zap className="w-4 h-4 text-orange-500" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">Expertise</span>
           </motion.div>
-
-          {/* Backend Card */}
-          <motion.div 
-            className="skill-card-designer glass p-10 md:p-14 lg:p-16 rounded-[40px] md:rounded-[60px] border border-white/5 relative group w-full min-h-[400px] flex flex-col justify-center"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+          <motion.h2 
+            className="text-4xl md:text-5xl font-extrabold text-white mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[100px]" />
-            <h3 className="text-4xl font-bold mb-16 flex items-center gap-6">
-              <span className="w-16 h-16 flex items-center justify-center bg-purple-500/20 text-purple-500 rounded-3xl">02</span>
-              Backend
-            </h3>
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {backendSkills.map((skill, index) => (
-                <motion.div 
-                  key={index}
-                  variants={itemVariants}
-                  className="flex items-center gap-5 p-6 bg-white/5 rounded-3xl border border-white/5 group-hover:border-purple-500/20 transition-all hover:bg-white/10"
-                >
-                  <div className="w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_15px_rgba(139,92,246,0.7)]" />
-                  <div>
-                    <div className="text-2xl font-bold text-white/90">{skill.name}</div>
-                    <div className="text-[12px] text-muted uppercase tracking-widest mt-1">{skill.level}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+            Technical <span className="text-orange-500">Skills</span>
+          </motion.h2>
+          <motion.p 
+            className="text-muted text-lg max-w-2xl mx-auto opacity-80"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            A comprehensive overview of my technical abilities, developed through dedicated learning.
+          </motion.p>
         </div>
+
+        {/* Custom CSS Grid Layout */}
+        <div className="skills-grid-new">
+          {skillCategories.map((category, idx) => (
+            <motion.div
+              key={idx}
+              className="skill-card-new"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <h3 className="skill-card-title">{category.title}</h3>
+
+              <div className="skill-items-grid">
+                {category.skills.map((skill, sIdx) => (
+                  <div key={sIdx} className="skill-item-new">
+                    <CheckCircle2 size={20} className="skill-check-icon text-orange-500" />
+                    <div className="skill-data">
+                      <span className="skill-name-new">{skill.name}</span>
+                      <span className="skill-level-new">{skill.level}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

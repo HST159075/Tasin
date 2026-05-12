@@ -82,6 +82,9 @@ export default function Navbar() {
                   <a href="#education" onClick={() => setIsMoreOpen(false)}>
                     <GraduationCap size={16} /> Education
                   </a>
+                  <a href="#experience" onClick={() => setIsMoreOpen(false)}>
+                    <Briefcase size={16} /> Experience
+                  </a>
                 </motion.div>
               )}
             </AnimatePresence>
