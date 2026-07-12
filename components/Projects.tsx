@@ -137,9 +137,7 @@ export default function Projects() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
           >
             <Code2 className="w-4 h-4 text-orange-500" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">
-              Creative Portfolio
-            </span>
+            
           </motion.div>
 
           <motion.h2

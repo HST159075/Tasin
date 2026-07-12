@@ -104,7 +104,7 @@ export default function Hero() {
               style={{ fontFamily: '"Times New Roman", Times, serif', fontStyle: 'italic' }}
             >
               Based in <strong>Bangladesh</strong>. I architect fast, scalable, <br />
-              real-time web applications that solve <strong>actual problems</strong>—from <br />
+              real-time web applications that solve <strong>actual problems—from</strong> <br />
               robust <strong>database architecture</strong> to <strong>pixel-perfect</strong> interfaces.
             </motion.p>
             

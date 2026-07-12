@@ -28,7 +28,6 @@ export default function TechStack() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title">Technology Stack</h2>
-          <span className="section-subtitle">Tools & Technologies</span>
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-6">
