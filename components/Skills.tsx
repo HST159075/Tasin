@@ -20,21 +20,21 @@ const skillCategories = [
     skills: [
       { name: "Node.JS / Express", level: "Advanced" },
       { name: "MongoDB", level: "Expert" },
-      { name: "PostgreSQL", level: "Intermediate" },
+      { name: "PostgreSQL", level: "Expert" },
       { name: "Prisma / Mongoose", level: "Advanced" },
-      { name: "REST / GraphQL", level: "Advanced" },
+      { name: "REST", level: "Advanced" },
       { name: "Socket.io", level: "Intermediate" },
     ],
   },
   {
     title: "Tools & DevOps",
     skills: [
-      { name: "Git / GitHub", level: "Expert" },
+      { name: "GitHub", level: "Expert" },
       { name: "Docker", level: "Intermediate" },
       { name: "Vercel / Netlify", level: "Advanced" },
       { name: "Postman", level: "Expert" },
       { name: "Figma UI/UX", level: "Intermediate" },
-      { name: "Firebase / Supabase", level: "Advanced" },
+      { name: "Neon / Supabase", level: "Advanced" },
     ],
   },
 ];
@@ -43,7 +43,7 @@ export default function Skills() {
   return (
     <section id="skills" className="relative py-24 bg-transparent overflow-hidden">
       <div className="max-w-[1100px] mx-auto px-4 relative z-10">
-        
+
         {/* Header */}
         <div className="skills-header">
           <motion.div
@@ -55,7 +55,7 @@ export default function Skills() {
             <Zap className="w-4 h-4 text-orange-500" />
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">Expertise</span>
           </motion.div>
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-extrabold text-white mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export default function Skills() {
           >
             Technical <span className="text-orange-500">Skills</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-muted text-lg max-w-2xl mx-auto opacity-80"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

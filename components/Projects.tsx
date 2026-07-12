@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { X, ExternalLink, Code2, Lightbulb, Trophy } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -77,7 +77,7 @@ const projectsData = [
     image: "/rawasi.jpg",
     tags: ["HTML5", "CSS3", "JavaScript", "Multilingual", "Responsive"],
     live: "https://hst159075.github.io/Rawasi-tailor",
-    github: "#",
+    github: "", // no source available — handled conditionally below
     stats: [
       { num: "Luxury", label: "Abayas" },
       { num: "Muscat", label: "Oman" },
@@ -104,12 +104,32 @@ export default function Projects() {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const closeModal = useCallback(() => setSelectedProject(null), []);
+
+  // Close modal on Escape key + lock background scroll while modal is open
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeModal();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [selectedProject, closeModal]);
+
   return (
     <section id="projects" className="relative py-24 bg-transparent overflow-hidden">
       <div className="max-w-[1100px] mx-auto px-4 relative z-10">
-        
+
         {/* Header */}
-        <div className="skills-header mb-16">
+        <div className="flex flex-col items-center text-center mb-[140px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -117,10 +137,13 @@ export default function Projects() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
           >
             <Code2 className="w-4 h-4 text-orange-500" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">Creative Portfolio</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">
+              Creative Portfolio
+            </span>
           </motion.div>
-          <motion.h2 
-            className="text-4xl md:text-5xl font-extrabold text-white mb-6"
+
+          <motion.h2
+            className="text-4xl md:text-5xl font-extrabold text-white mb-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -128,63 +151,94 @@ export default function Projects() {
           >
             Featured <span className="text-orange-500">Projects</span>
           </motion.h2>
-          <motion.p 
-            className="text-muted text-lg max-w-2xl mx-auto opacity-80"
+
+          <motion.p
+            className="text-muted text-lg max-w-2xl mx-auto opacity-80 text-center mb-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            A curated selection of digital experiences where complex logic meets intuitive design.
+            A curated selection of digital experiences where complex logic meets
+            intuitive design.
           </motion.p>
+
+          <motion.div
+            className="w-[40px] h-[3px] bg-orange-500 rounded-full"
+            initial={{ opacity: 0, width: 0 }}
+            whileInView={{ opacity: 1, width: 40 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          />
         </div>
 
         <div className="flex flex-col gap-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               {currentProjects.map((project, idx) => (
                 <motion.div
                   key={project.id}
-                  className="bg-[#0e0e12] border border-white/5 rounded-[32px] p-5 group cursor-pointer hover:-translate-y-2 hover:border-orange-500/30 hover:shadow-[0_10px_40px_rgba(255,106,0,0.1)] transition-all duration-500 flex flex-col"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View details for ${project.title}`}
+                  className="relative bg-gradient-to-b from-[#1c1c28] to-[#0e0e12] border-2 border-white/20 rounded-[40px] group cursor-pointer hover:-translate-y-3 hover:scale-[1.02] hover:border-orange-500/50 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(255,106,0,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-500 transition-all duration-500 ease-out flex flex-col gap-5 overflow-hidden"
+                  style={{ padding: '32px' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ delay: idx * 0.1 }}
                   onClick={() => setSelectedProject(project)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedProject(project);
+                    }
+                  }}
                 >
-                  <div className="relative overflow-hidden rounded-[24px] aspect-[4/3] mb-6 border border-white/5">
+                  {/* Default Glowing Line at the top */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[2px] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent opacity-50 group-hover:opacity-100 group-hover:w-full transition-all duration-500 z-20" />
+
+                  {/* Subtle glowing orb in the background */}
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/10 rounded-full blur-[60px] group-hover:bg-orange-500/30 transition-all duration-500 pointer-events-none z-0" />
+
+                  {/* Image Box */}
+                  <div className="relative overflow-hidden aspect-[4/3] rounded-[24px] border border-white/20 z-10 bg-black/50">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     />
-                    {/* Dark overlay that fades on hover */}
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                    <div className="absolute inset-0 bg-[#0e0e12]/20 group-hover:bg-transparent transition-opacity duration-500" />
                   </div>
 
-                  <div className="px-2 flex flex-col flex-grow gap-4">
-                    <div className="flex flex-wrap gap-2">
+                  {/* Text Content */}
+                  <div className="flex flex-col gap-4 relative z-10 mt-2 flex-grow px-2">
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-white group-hover:text-orange-400 transition-colors duration-300">
+                      {project.title.split('—')[0].trim()}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-400 line-clamp-3 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                      {project.desc}
+                    </p>
+
+                    {/* Tech Box */}
+                    <div className="flex flex-wrap gap-2 items-center mt-2">
+                      <span className="text-xs font-medium text-white/50 mr-1">Tech:</span>
                       {project.tags.slice(0, 3).map(tag => (
-                        <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white/5 text-white/70 border border-white/10 rounded-full">
+                        <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-white/5 text-gray-300 rounded group-hover:bg-orange-500/10 group-hover:text-orange-200 transition-colors duration-300">
                           {tag}
                         </span>
                       ))}
                     </div>
-                    
-                    <div>
-                      <h3 className="text-2xl font-bold text-white group-hover:text-orange-500 transition-colors mb-2">
-                        {project.title.split('—')[0].trim()}
-                      </h3>
-                      <p className="text-sm text-muted line-clamp-2 leading-relaxed">
-                        {project.desc}
-                      </p>
-                    </div>
 
-                    {/* Bottom row: Explore link */}
-                    <div className="mt-auto pt-4 flex justify-between items-center border-t border-white/5">
-                      <span className="text-xs font-bold text-orange-500 uppercase tracking-widest flex items-center gap-2">
-                        Explore <ExternalLink size={14} className="group-hover:animate-pulse" />
+                    {/* Explore Link */}
+                    <div className="mt-auto pt-4">
+                      <span className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2 group-hover:text-orange-400 transition-colors duration-300">
+                        Explore <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
                       </span>
                     </div>
                   </div>
@@ -200,11 +254,12 @@ export default function Projects() {
                 <button
                   key={i}
                   onClick={() => paginate(i + 1)}
-                  className={`w-10 h-10 rounded-full border transition-all duration-300 flex items-center justify-center font-bold text-sm ${
-                    currentPage === i + 1 
-                    ? 'bg-orange-500 border-orange-500 text-white shadow-[0_0_15px_rgba(255,106,0,0.3)]' 
+                  aria-label={`Go to page ${i + 1}`}
+                  aria-current={currentPage === i + 1 ? "page" : undefined}
+                  className={`w-10 h-10 rounded-full border transition-all duration-300 flex items-center justify-center font-bold text-sm ${currentPage === i + 1
+                    ? 'bg-orange-500 border-orange-500 text-white shadow-[0_0_15px_rgba(255,106,0,0.3)]'
                     : 'bg-white/5 border-white/10 text-muted hover:border-white/30 hover:bg-white/10'
-                  }`}
+                    }`}
                 >
                   {i + 1}
                 </button>
@@ -217,29 +272,47 @@ export default function Projects() {
       {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md"
+            onClick={closeModal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
+          >
             <motion.div
               className="bg-[#0e0e12] border border-white/10 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[32px] relative flex flex-col lg:flex-row shadow-2xl"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <button 
+              <button
                 className="absolute top-4 right-4 z-50 w-10 h-10 bg-black/50 hover:bg-orange-500 rounded-full flex items-center justify-center text-white backdrop-blur-md border border-white/10 transition-all"
-                onClick={() => setSelectedProject(null)}
+                onClick={closeModal}
+                aria-label="Close project details"
               >
                 <X size={20} />
               </button>
 
               {/* Image Side */}
-              <div className="w-full lg:w-1/2 relative h-[300px] lg:h-auto border-r border-white/5 bg-[#050508] p-6 lg:p-8 flex flex-col justify-center">
-                <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden border border-white/5 shadow-xl">
-                  <Image src={selectedProject.image} alt={selectedProject.title} fill className="object-cover" />
+              <div 
+                className="w-full lg:w-1/2 relative h-auto border-b lg:border-b-0 lg:border-r border-white/5 bg-[#050508] flex flex-col"
+                style={{ padding: '32px' }}
+              >
+                <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden border border-white/10 shadow-xl">
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
                 </div>
-                <div className="mt-8 flex flex-wrap gap-2 justify-center">
+                <div className="mt-8 flex flex-wrap gap-2">
+                  <span className="text-xs font-medium text-white/50 mr-1 mt-1">Tech:</span>
                   {selectedProject.tags.map(tag => (
-                    <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+                    <span key={tag} className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 bg-white/5 text-gray-300 rounded group-hover:bg-orange-500/10 group-hover:text-orange-200 transition-colors duration-300">
                       {tag}
                     </span>
                   ))}
@@ -249,7 +322,7 @@ export default function Projects() {
               {/* Info Side */}
               <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col gap-8">
                 <div>
-                  <h3 className="text-3xl font-extrabold text-white mb-4 leading-tight">{selectedProject.title}</h3>
+                  <h3 id="project-modal-title" className="text-3xl font-extrabold text-white mb-4 leading-tight">{selectedProject.title}</h3>
                   <p className="text-[15px] text-muted leading-relaxed">{selectedProject.desc}</p>
                 </div>
 
@@ -282,9 +355,11 @@ export default function Projects() {
                   <a href={selectedProject.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
                     <ExternalLink size={18} /> Live Demo
                   </a>
-                  <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold py-3 px-6 rounded-xl transition-colors">
-                    <Code2 size={18} /> Source Code
-                  </a>
+                  {selectedProject.github && (
+                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold py-3 px-6 rounded-xl transition-colors">
+                      <Code2 size={18} /> Source Code
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
