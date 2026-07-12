@@ -45,8 +45,6 @@ export default function Experience() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
           >
-            <Briefcase className="w-4 h-4 text-orange-500" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">Professional Journey</span>
           </motion.div>
           <motion.h2 
             className="text-4xl md:text-5xl font-extrabold text-white mb-6"
@@ -57,15 +55,7 @@ export default function Experience() {
           >
             My <span className="text-orange-500">Experience</span>
           </motion.h2>
-          <motion.p 
-            className="text-muted text-lg max-w-2xl mx-auto opacity-80"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            A track record of building impactful solutions and growing as a full-stack engineer.
-          </motion.p>
+          
         </div>
 
         <div className="flex flex-col gap-10">

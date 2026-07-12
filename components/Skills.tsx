@@ -52,7 +52,6 @@ export default function Skills() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
           >
-            <Zap className="w-4 h-4 text-orange-500" />
           </motion.div>
           <motion.h2
             className="text-4xl md:text-5xl font-extrabold text-white mb-6"
@@ -63,15 +62,7 @@ export default function Skills() {
           >
             Technical <span className="text-orange-500">Skills</span>
           </motion.h2>
-          <motion.p
-            className="text-muted text-lg max-w-2xl mx-auto opacity-80"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            A comprehensive overview of my technical abilities, developed through dedicated learning.
-          </motion.p>
+         
         </div>
 
         {/* Custom CSS Grid Layout */}

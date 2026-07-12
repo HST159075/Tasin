@@ -37,7 +37,7 @@ export default function Footer() {
               <a href="https://github.com/HST159075" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="https://www.linkedin.com/in/md-tasinul-alam/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a href="https://twitter.com/tasin" target="_blank" rel="noopener noreferrer">Twitter</a>
-              <a href="https://instagram.com/tasin" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.instagram.com/let_s_go26/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-info">
             <p>&copy; 2026 Tasin. All rights reserved.</p>
-            <p className="footer-location">Built from Dhaka, Bangladesh 🇧🇩</p>
+            <p className="footer-location">Built from Chattogram, Bangladesh 🇧🇩</p>
           </div>
           
           <button className="back-to-top-btn" onClick={scrollToTop}>
