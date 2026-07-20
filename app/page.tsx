@@ -6,10 +6,10 @@ import Experience from "../components/Experience";
 import Skills from "../components/Skills";
 import TechStack from "../components/TechStack";
 import Projects from "../components/Projects";
-import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import BackgroundAnimation from "../components/BackgroundAnimation";
+import Certification from "@/components/Certification";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
         <Skills />
         <TechStack />
         <Projects />
-        <Testimonials />
+        <Certification />
         <Contact />
       </main>
 
