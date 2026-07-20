@@ -17,7 +17,7 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Tasin — Full Stack Developer",
+  title: "MD Tasinul Alam | Full-Stack Developer",
   description: "I build fast, scalable, real-time web applications that solve real problems.",
 };
 
